@@ -18,11 +18,11 @@ set -e
 # Kernel vermagic override
 # ==========================================
 
-PATCH_VER="$GITHUB_WORKSPACE/Xiaomi-AX3000T/vermagic.patch"
+#PATCH_VER="$GITHUB_WORKSPACE/Xiaomi-AX3000T/vermagic.patch"
 
 echo "[0] Setting kernel vermagic"
 
-patch -p1 < "$PATCH_VER"
+#patch -p1 < "$PATCH_VER"
 
 echo "✓ Setting kernel vermagic applied successfully."
 
@@ -127,7 +127,7 @@ EOF
 
 echo "[4] Kernel tweak (mt76 / AX3000T)..."
 
-sed -i '/AUTOLOAD:=$(call AutoProbe,mt7915e)/a \  MODPARAMS.mt7915e:=wed_enable=Y' package/kernel/mt76/Makefile
+#sed -i '/AUTOLOAD:=$(call AutoProbe,mt7915e)/a \  MODPARAMS.mt7915e:=wed_enable=Y' package/kernel/mt76/Makefile
 
 echo "[5] LuCI theme Argon..."
 
@@ -156,11 +156,6 @@ uci set wireless.@wifi-iface[1].ssid="OpenWrt_5G"
 
 uci commit wireless
 
-uci set firewall.@defaults[0].flow_offloading='1'
-uci set firewall.@defaults[0].flow_offloading_hw='1'
-
-uci commit firewall
-
 exit 0
 EOF
 
@@ -170,7 +165,6 @@ PATCH_FILE="$GITHUB_WORKSPACE/Xiaomi-AX3000T/diff.patch"
 patch -p1 < "$PATCH_FILE"
 
 rm -f feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js.orig
-rm -f package/kernel/leds-ws2812b/src/leds-ws2812b.c.orig
 
 mkdir -p target/linux/mediatek/filogic/base-files/etc/hotplug.d/iface
 
@@ -180,7 +174,7 @@ cat > target/linux/mediatek/filogic/base-files/etc/hotplug.d/iface/99-odhcpd-rel
 [ "$ACTION" = "ifup" ] || exit 0
 
 if [ "$INTERFACE" = "wan6" ]; then
-        sleep 10
+        sleep 20
         /etc/init.d/odhcpd reload
 fi
 ODHCPD_EOF
