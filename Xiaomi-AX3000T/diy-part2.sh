@@ -166,19 +166,4 @@ patch -p1 < "$PATCH_FILE"
 
 rm -f feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js.orig
 
-mkdir -p target/linux/mediatek/filogic/base-files/etc/hotplug.d/iface
-
-cat > target/linux/mediatek/filogic/base-files/etc/hotplug.d/iface/99-odhcpd-reload <<'ODHCPD_EOF'
-#!/bin/sh
-
-[ "$ACTION" = "ifup" ] || exit 0
-
-if [ "$INTERFACE" = "wan6" ]; then
-        sleep 20
-        /etc/init.d/odhcpd reload
-fi
-ODHCPD_EOF
-
-chmod 0755 target/linux/mediatek/filogic/base-files/etc/hotplug.d/iface/99-odhcpd-reload
-
 echo "Done ✔"
