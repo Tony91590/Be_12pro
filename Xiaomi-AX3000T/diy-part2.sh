@@ -160,8 +160,10 @@ sed -i '/piodir=$(uci -q get dhcp\.odhcpd\.piodir)/,/fi/d' /etc/init.d/odhcpd
 uci -q delete dhcp.odhcpd.piodir 
 
 uci commit wireless 
-uci commit dhcp 
-/etc/init.d/odhcpd reload
+
+uci set dhcp.odhcpd.piodir=''
+uci commit dhcp
+/etc/init.d/odhcpd restart
 
 exit 0
 EOF
