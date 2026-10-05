@@ -154,7 +154,14 @@ uci set wireless.@wifi-iface[1].disabled='0'
 uci set wireless.@wifi-iface[1].encryption='none'
 uci set wireless.@wifi-iface[1].ssid="OpenWrt_5G"
 
-uci commit wireless
+# Disable odhcpd piodir 
+sed -i '/set dhcp\.odhcpd\.piodir=/d' /etc/init.d/odhcpd 
+sed -i '/piodir=$(uci -q get dhcp\.odhcpd\.piodir)/,/fi/d' /etc/init.d/odhcpd 
+uci -q delete dhcp.odhcpd.piodir 
+
+uci commit wireless 
+uci commit dhcp 
+/etc/init.d/odhcpd reload
 
 exit 0
 EOF
