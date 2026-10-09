@@ -9,7 +9,7 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-# Custom build script - Tenda BE7200
+# Custom build script - Tenda-BE12-Pro
 # Optimized LuCI + ImmortalWrt enhancements
 
 set -e
