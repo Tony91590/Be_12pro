@@ -9,7 +9,7 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-# Custom build script - Redmi AX6000 
+# Custom build script - Tenda BE7200
 # Optimized LuCI + ImmortalWrt enhancements
 
 set -e
@@ -18,7 +18,7 @@ set -e
 # Kernel vermagic override
 # ==========================================
 
-#PATCH_VER="$GITHUB_WORKSPACE/Xiaomi-AX3000T/vermagic.patch"
+#PATCH_VER="$GITHUB_WORKSPACE/Tenda-BE7200/vermagic.patch"
 
 echo "[0] Setting kernel vermagic"
 
@@ -30,7 +30,7 @@ echo "✓ Setting kernel vermagic applied successfully."
 # LuCI system status patch
 # ==========================================
 
-PATCH_FILE="$GITHUB_WORKSPACE/Xiaomi-AX3000T/10_system.patch"
+PATCH_FILE="$GITHUB_WORKSPACE/Tenda-BE7200/10_system.patch"
 
 echo "[1] Applying LuCI system status patch..."
 
@@ -125,7 +125,7 @@ cat > files/usr/share/rpcd/acl.d/luci-mod-status-autocore.json <<'EOF'
 EOF
 
 
-echo "[4] Kernel tweak (mt76 / AX3000T)..."
+echo "[4] Kernel tweak (mt76 / Tenda-BE7200)..."
 
 #sed -i '/AUTOLOAD:=$(call AutoProbe,mt7915e)/a \  MODPARAMS.mt7915e:=wed_enable=Y' package/kernel/mt76/Makefile
 
@@ -137,7 +137,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/lu
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
 
 
-echo "[6] Default WiFi + firewall config..."
+echo "[6] Default WiFi"
 
 mkdir -p files/etc/uci-defaults
 
