@@ -141,7 +141,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Tenda-BE7200">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Tenda-BE12-Pro">> $GITHUB_OUTPUT
         touch release.txt
         echo "The default IP address is 192.168.1.1" >> release.txt
         echo "📥 Firmware download" >> release.txt
