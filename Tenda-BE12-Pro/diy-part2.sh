@@ -18,7 +18,7 @@ set -e
 # Kernel vermagic override
 # ==========================================
 
-#PATCH_VER="$GITHUB_WORKSPACE/Tenda-BE7200/vermagic.patch"
+#PATCH_VER="$GITHUB_WORKSPACE/Tenda-BE12-Pro/vermagic.patch"
 
 echo "[0] Setting kernel vermagic"
 
@@ -30,7 +30,7 @@ echo "✓ Setting kernel vermagic applied successfully."
 # LuCI system status patch
 # ==========================================
 
-PATCH_FILE="$GITHUB_WORKSPACE/Tenda-BE7200/10_system.patch"
+PATCH_FILE="$GITHUB_WORKSPACE/Tenda-BE12-Pro/10_system.patch"
 
 echo "[1] Applying LuCI system status patch..."
 
@@ -125,7 +125,7 @@ cat > files/usr/share/rpcd/acl.d/luci-mod-status-autocore.json <<'EOF'
 EOF
 
 
-echo "[4] Kernel tweak (mt76 / Tenda-BE7200)..."
+echo "[4] Kernel tweak (mt76 / Tenda-BE12-Pro)..."
 
 #sed -i '/AUTOLOAD:=$(call AutoProbe,mt7915e)/a \  MODPARAMS.mt7915e:=wed_enable=Y' package/kernel/mt76/Makefile
 
@@ -161,8 +161,8 @@ EOF
 
 chmod +x files/etc/uci-defaults/99-default-settings
 
-PATCH_FILE="$GITHUB_WORKSPACE/Xiaomi-AX3000T/diff.patch"
-patch -p1 < "$PATCH_FILE"
+#PATCH_FILE="$GITHUB_WORKSPACE/Tenda-BE12-Pro/diff.patch"
+#patch -p1 < "$PATCH_FILE"
 
 rm -f feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js.orig
 
