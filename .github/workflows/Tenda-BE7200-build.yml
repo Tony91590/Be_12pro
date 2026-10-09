@@ -9,7 +9,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############Name##############
-name: Xiaomi-AX3000T-build
+name: Tenda-BE7200-build
 
 on:
   repository_dispatch:
@@ -22,9 +22,9 @@ env:
   REPO_BRANCH: main
   REPO_COMMIT: 
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: Xiaomi-AX3000T/.config
-  DIY_P1_SH: Xiaomi-AX3000T/diy-part1.sh
-  DIY_P2_SH: Xiaomi-AX3000T/diy-part2.sh
+  CONFIG_FILE: Tenda-BE7200/.config
+  DIY_P1_SH: Tenda-BE7200/diy-part1.sh
+  DIY_P2_SH: Tenda-BE7200/diy-part2.sh
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   UPLOAD_PACKAGES: true
@@ -141,7 +141,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Xiaomi-AX3000T">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Tenda-BE7200">> $GITHUB_OUTPUT
         touch release.txt
         echo "The default IP address is 192.168.1.1" >> release.txt
         echo "📥 Firmware download" >> release.txt
